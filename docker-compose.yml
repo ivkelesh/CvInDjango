@@ -1,0 +1,28 @@
+version: "3.7"
+services:
+  app:
+    env_file:
+      - ./.env
+    build: .
+    volumes:
+      - .:/usr/src/app/
+    ports:
+      - 8000:8000
+    container_name: my_cv_django
+    command: bash -c "python my_cv_django/manage.py migrate && python my_cv_django/manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14-alpine
+    volumes:
+      - cv_data:/var/lib/postgresql/data
+    ports:
+      - "8088:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    container_name: cv_db
+volumes:
+  cv_data: {}

@@ -17,6 +17,7 @@ services:
     image: postgres:14-alpine
     volumes:
       - cv_data:/var/lib/postgresql/data
+      - ./pg_hba.conf:/var/lib/postgresql/data/pg_hba.conf
     ports:
       - "8088:5432"
     environment:

@@ -1,0 +1,26 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block content %}
+
+<!-- ======= Hero Section ======= -->
+<section id="hero" class="d-flex flex-column justify-content-center align-items-center"
+         style="background: url('{% static 'img/hero-bg.jpg' %}') top center"
+>
+    <div class="col-12 row gap-3">
+        {% for cv in cvies %}
+        <a href="{% url 'cv:cv' cv.id %}" style="text-decoration:none; z-index:9999" class="col-3">
+            <div class="card">
+                <img src="{{ cv.photo.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{ cv.user.get_full_name }}</h5>
+                    <p class="card-text text-dark fs-5">{{ cv.description }}</p>
+                </div>
+            </div>
+        </a>
+        {% endfor %}
+    </div>
+</section><!-- End Hero -->
+
+
+{% endblock %}

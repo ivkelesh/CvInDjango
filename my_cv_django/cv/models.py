@@ -9,7 +9,7 @@ class Cv(models.Model):
 
 
 class Experience(models.Model):
-    cv = models.ForeignKey(Cv, on_delete=models.CASCADE)
+    cv = models.ForeignKey(Cv, on_delete=models.CASCADE, related_name='experiences')
     start_date = models.DateField()
     end_date = models.DateField()
     company_name = models.CharField(max_length=128)
@@ -18,19 +18,19 @@ class Experience(models.Model):
 
 
 class Skil(models.Model):
-    cv = models.ForeignKey(Cv, on_delete=models.CASCADE)
+    cv = models.ForeignKey(Cv, on_delete=models.CASCADE, related_name='skills')
     name = models.CharField(max_length=128)
 
 
 class Education(models.Model):
-    cv = models.ForeignKey(Cv, on_delete=models.CASCADE)
+    cv = models.ForeignKey(Cv, on_delete=models.CASCADE, related_name='educations')
     start_date = models.DateField()
     end_date = models.DateField()
     institution_name = models.CharField(max_length=128)
 
 
 class Contacts(models.Model):
-    cv = models.ForeignKey(Cv, on_delete=models.CASCADE)
+    cv = models.ForeignKey(Cv, on_delete=models.CASCADE, related_name='contacts')
     phone_number = models.CharField(max_length=64)
     email = models.EmailField()
     social_links = models.TextField()

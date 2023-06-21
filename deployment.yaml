@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-cv-django-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: my-cv-django
+  template:
+    metadata:
+      labels:
+        app: my-cv-django
+    spec:
+      containers:
+      - name: my-cv-django
+        image: my_cv_django
+        ports:
+        - containerPort: 8000
